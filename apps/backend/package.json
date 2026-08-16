@@ -34,19 +34,19 @@
     "nodemailer": "^9.0.5",
     "pino": "^9.0.0",
     "pino-pretty": "^10.0.0",
+    "prisma": "^5.18.0",
     "qrcode": "^1.5.4",
-    "socket.io": "^4.7.5"
-  },
-  "devDependencies": {
+    "socket.io": "^4.7.5",
+    "typescript": "^5.5.4",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.14.15",
     "@types/nodemailer": "^6.4.15",
-    "@types/qrcode": "^1.5.5",
+    "@types/qrcode": "^1.5.5"
+  },
+  "devDependencies": {
     "@types/supertest": "^6.0.2",
-    "prisma": "^5.18.0",
     "supertest": "^7.0.0",
     "tsx": "^4.17.0",
-    "typescript": "^5.5.4",
     "vitest": "^2.0.5"
   }
 }
