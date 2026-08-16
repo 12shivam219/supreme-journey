@@ -150,7 +150,7 @@ export class AIService {
     const user = await prisma.user.findUnique({ where: { id: userId } });
     const userName = user?.name || 'there';
 
-    let greeting = `Evening Reflection for ${userName}`;
+    const greeting = `Evening Reflection for ${userName}`;
     let reflectionSummary = '';
 
     const taskRatio = summary.tasks.total > 0 ? summary.tasks.completed / summary.tasks.total : 1;

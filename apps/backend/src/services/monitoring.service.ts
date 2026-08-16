@@ -4,7 +4,6 @@ import {
   WeeklyReportResponse,
   TimelineSession,
   UpdateScreenTimeLimitDTO,
-  DeviceType,
 } from '@tracker/shared';
 
 export class MonitoringService {

@@ -1,4 +1,4 @@
-import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
+import { FastifyInstance } from 'fastify';
 import * as Sentry from '@sentry/node';
 import { logger } from '../utils/logger.js';
 

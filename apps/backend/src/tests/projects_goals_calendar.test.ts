@@ -22,11 +22,9 @@ afterAll(async () => {
 
 describe('Phase 9: LifeOS Projects, Goals, Calendar & CSV Export Integration Tests', () => {
   let authToken: string;
-  let userId: string;
   let projectId: string;
   let goalId: string;
   let milestoneId: string;
-  let eventId: string;
 
   it('1. Registers parent account for LifeOS testing', async () => {
     const res = await request(app.server)
@@ -39,7 +37,6 @@ describe('Phase 9: LifeOS Projects, Goals, Calendar & CSV Export Integration Tes
 
     expect(res.status).toBe(201);
     authToken = res.body.accessToken;
-    userId = res.body.user.id;
   });
 
   describe('Projects Engine', () => {
@@ -151,7 +148,6 @@ describe('Phase 9: LifeOS Projects, Goals, Calendar & CSV Export Integration Tes
 
       expect(eventRes.status).toBe(201);
       expect(eventRes.body.title).toBe('Family Dinner');
-      eventId = eventRes.body.id;
 
       // Query calendar feed for today
       const startRange = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();

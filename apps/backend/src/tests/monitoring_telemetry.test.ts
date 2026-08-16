@@ -24,7 +24,6 @@ afterAll(async () => {
 describe('Phase 4: Parent Monitoring Dashboard & Telemetry Integration Tests', () => {
   let parentToken: string;
   let childId: string;
-  let deviceId: string;
   let deviceToken: string;
   let alertId: string;
 
@@ -74,7 +73,6 @@ describe('Phase 4: Parent Monitoring Dashboard & Telemetry Integration Tests', (
       });
 
     expect(pairDeviceRes.status).toBe(201);
-    deviceId = pairDeviceRes.body.deviceId;
     deviceToken = pairDeviceRes.body.deviceToken;
   });
 

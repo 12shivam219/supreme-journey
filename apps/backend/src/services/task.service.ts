@@ -1,5 +1,5 @@
 import { prisma } from '../config/db.js';
-import { CreateTaskDTO, UpdateTaskDTO, TaskPriority, TaskStatus } from '@tracker/shared';
+import { CreateTaskDTO, UpdateTaskDTO, TaskStatus } from '@tracker/shared';
 
 export class TaskService {
   private static parseDate(dateStr: string): Date {

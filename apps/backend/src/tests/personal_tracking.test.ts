@@ -24,7 +24,6 @@ afterAll(async () => {
 
 describe('Phase 3: Personal Tracking & Todo/Task Engine Integration Tests', () => {
   let authToken: string;
-  let userId: string;
   let habitId: string;
   let taskId: string;
 
@@ -44,7 +43,6 @@ describe('Phase 3: Personal Tracking & Todo/Task Engine Integration Tests', () =
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty('accessToken');
     authToken = res.body.accessToken;
-    userId = res.body.user.id;
   });
 
   describe('Habits & Streak Engine', () => {
