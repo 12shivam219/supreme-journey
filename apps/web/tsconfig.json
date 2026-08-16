@@ -13,6 +13,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@tracker/shared": ["../../packages/shared/src/index.ts"]
+    },
 
     "strict": true,
     "noUnusedLocals": true,
