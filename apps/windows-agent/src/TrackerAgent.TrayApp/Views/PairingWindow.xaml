@@ -1,0 +1,46 @@
+<Window x:Class="TrackerAgent.TrayApp.Views.PairingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tracker — Pair This Device" Height="380" Width="440"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="#0D1322" Foreground="#F1F5F9"
+        FontFamily="Segoe UI">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Link Device to Family Account" FontSize="18" FontWeight="Bold" Foreground="#FFFFFF"/>
+            <TextBlock Text="Enter the 6-digit pairing code shown in the parent dashboard."
+                       FontSize="11" Foreground="#94A3B8" TextWrapping="Wrap" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Form Content -->
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="0,0,0,10">
+            <TextBlock Text="DEVICE NAME" FontSize="10" FontWeight="Bold" Foreground="#94A3B8" Margin="0,0,0,6"/>
+            <TextBox x:Name="TxtDeviceName" Height="36" Background="#090D16" Foreground="#FFFFFF" BorderBrush="#1E293B"
+                     Padding="8,6" FontSize="13" Margin="0,0,0,16"/>
+
+            <TextBlock Text="6-DIGIT PAIRING CODE" FontSize="10" FontWeight="Bold" Foreground="#94A3B8" Margin="0,0,0,6"/>
+            <TextBox x:Name="TxtPairingCode" Height="40" Background="#090D16" Foreground="#F59E0B" BorderBrush="#1E293B"
+                     Padding="8,6" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center" MaxLength="6"
+                     Margin="0,0,0,10"/>
+
+            <TextBlock x:Name="TxtStatus" Text="" FontSize="11" Foreground="#EF4444" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Action Button -->
+        <Button Grid.Row="2" x:Name="BtnPair" Content="Pair Device" Height="38" Background="#F59E0B" Foreground="#090D16"
+                FontWeight="Bold" FontSize="12" BorderThickness="0" Click="BtnPair_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</Window>

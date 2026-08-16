@@ -1,0 +1,41 @@
+<Window x:Class="TrackerAgent.TrayApp.Views.TimesUpLockWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Time's Up" WindowStyle="None" WindowState="Maximized"
+        Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize"
+        Background="#F40A0D16" Foreground="#F1F5F9"
+        FontFamily="Segoe UI">
+    <Grid>
+        <Border Background="#1E293B" BorderBrush="#EF4444" BorderThickness="2" CornerRadius="20"
+                Width="520" Height="360" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="32">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- Lock Icon / Badge -->
+                <Border Width="64" Height="64" CornerRadius="32" Background="#20EF4444" BorderBrush="#EF4444" BorderThickness="1"
+                        HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <TextBlock Text="⏳" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+
+                <TextBlock Text="Daily Screen Time Limit Reached" FontSize="22" FontWeight="Bold" Foreground="#FFFFFF"
+                           HorizontalAlignment="Center" Margin="0,0,0,8" />
+
+                <TextBlock Text="You've reached your allowed screen time for today. Time to take a break, get some fresh air, or work on other activities!"
+                           FontSize="13" Foreground="#94A3B8" TextWrapping="Wrap" TextAlignment="Center" LineHeight="20"
+                           Margin="0,0,0,24" />
+
+                <Border Background="#090D16" BorderBrush="#334155" BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,0,0,20">
+                    <TextBlock Text="Your parent has been notified of today's total active hours."
+                               FontSize="11" Foreground="#F59E0B" HorizontalAlignment="Center" />
+                </Border>
+
+                <Button x:Name="BtnAcknowledge" Content="Close &amp; Unplug" Width="180" Height="40" Background="#EF4444" Foreground="#FFFFFF"
+                        FontWeight="Bold" FontSize="13" BorderThickness="0" HorizontalAlignment="Center" Click="BtnAcknowledge_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,397 @@
+// sqlite / postgres datasource generator
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  parent
+  child
+}
+
+enum DeviceType {
+  windows
+  android
+}
+
+enum Priority {
+  low
+  medium
+  high
+  urgent
+}
+
+enum TaskStatus {
+  todo
+  in_progress
+  completed
+  cancelled
+}
+
+model User {
+  id            String         @id @default(uuid())
+  role          Role
+  name          String
+  email         String         @unique
+  passwordHash  String         @map("password_hash")
+  age           Int?
+  avatar        String?
+  createdAt     DateTime       @default(now()) @map("created_at")
+
+  parentLinks   FamilyLink[]   @relation("ParentRelation")
+  childLinks    FamilyLink[]   @relation("ChildRelation")
+  devices       Device[]
+  habits        Habit[]
+  moodLogs      MoodLog[]
+  journalEntries JournalEntry[]
+  tasks         Task[]
+  projects      Project[]
+  goals         Goal[]
+  calendarEvents CalendarEvent[]
+  alerts        Alert[]
+  refreshTokens RefreshToken[]
+  passwordResets PasswordReset[]
+  pairingCodes  PairingCode[]
+  screenTimeLimit ScreenTimeLimit?
+
+  @@index([email])
+  @@index([role])
+  @@index([createdAt])
+  @@map("users")
+}
+
+model ScreenTimeLimit {
+  id                  String   @id @default(uuid())
+  childId             String   @unique @map("child_id")
+  dailyMinutesLimit   Int      @default(240) @map("daily_minutes_limit")
+  categoryLimitsJson  Json?    @map("category_limits_json")
+  dayOfWeekLimitsJson Json?    @map("day_of_week_limits_json")
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @default(now()) @updatedAt @map("updated_at")
+
+  child               User     @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@map("screen_time_limits")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("refresh_tokens")
+}
+
+model PairingCode {
+  id        String   @id @default(uuid())
+  childId   String   @map("child_id")
+  code      String   @unique
+  expiresAt DateTime @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+
+  child     User     @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@map("pairing_codes")
+}
+
+model PasswordReset {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  tokenHash String   @unique @map("token_hash")
+  expiresAt DateTime @map("expires_at")
+  used      Boolean  @default(false)
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("password_resets")
+}
+
+model FamilyLink {
+  parentId String @map("parent_id")
+  childId  String @map("child_id")
+
+  parent   User   @relation("ParentRelation", fields: [parentId], references: [id], onDelete: Cascade)
+  child    User   @relation("ChildRelation", fields: [childId], references: [id], onDelete: Cascade)
+
+  @@id([parentId, childId])
+  @@map("family_links")
+}
+
+model Device {
+  id         String     @id @default(uuid())
+  childId    String     @map("child_id")
+  type       DeviceType
+  deviceName String     @map("device_name")
+  deviceToken String?   @unique @map("device_token")
+  lastSeen   DateTime   @default(now()) @map("last_seen")
+
+  child      User       @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  appSessions     AppSession[]
+  screenTimeDaily ScreenTimeDaily[]
+  screenshots     Screenshot[]
+
+  @@index([childId])
+  @@index([lastSeen])
+  @@map("devices")
+}
+
+model Habit {
+  id        String     @id @default(uuid())
+  userId    String     @map("user_id")
+  name      String
+  frequency String     // e.g., "daily", "weekly"
+  target    Int        @default(1)
+  archived  Boolean    @default(false)
+  createdAt DateTime   @default(now()) @map("created_at")
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  logs      HabitLog[]
+
+  @@index([userId])
+  @@index([archived])
+  @@map("habits")
+}
+
+model HabitLog {
+  id        String   @id @default(uuid())
+  habitId   String   @map("habit_id")
+  date      DateTime @db.Date
+  completed Boolean  @default(false)
+  note      String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  habit     Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+
+  @@unique([habitId, date])
+  @@index([habitId])
+  @@index([date])
+  @@map("habit_logs")
+}
+
+model MoodLog {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  date      DateTime @db.Date
+  moodScore Int      @map("mood_score")
+  note      String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([userId])
+  @@index([date])
+  @@map("mood_logs")
+}
+
+model JournalEntry {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  date      DateTime @db.Date
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([userId])
+  @@index([date])
+  @@map("journal_entries")
+}
+
+model Task {
+  id               String     @id @default(uuid())
+  userId           String     @map("user_id")
+  projectId        String?    @map("project_id")
+  title            String
+  description      String?
+  dueDate          DateTime?  @map("due_date")
+  startDate        DateTime?  @map("start_date")
+  estimatedMinutes Int?       @map("estimated_minutes")
+  actualMinutes    Int?       @map("actual_minutes")
+  priority         Priority   @default(medium)
+  status           TaskStatus @default(todo)
+  recurrenceRule   String?    @map("recurrence_rule")
+  completedAt      DateTime?  @map("completed_at")
+  createdAt        DateTime   @default(now()) @map("created_at")
+  parentTaskId     String?    @map("parent_task_id")
+
+  user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project          Project?   @relation(fields: [projectId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([projectId])
+  @@index([status])
+  @@index([dueDate])
+  @@map("tasks")
+}
+
+model AppSession {
+  id              String    @id @default(uuid())
+  deviceId        String    @map("device_id")
+  appName         String    @map("app_name")
+  windowTitle     String?   @map("window_title")
+  startTime       DateTime  @map("start_time")
+  endTime         DateTime? @map("end_time")
+  durationSeconds Int?      @map("duration_seconds")
+  clientSessionId String?   @unique @map("client_session_id")
+
+  device          Device    @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@index([deviceId])
+  @@index([startTime])
+  @@index([appName])
+  @@map("app_sessions")
+}
+
+model ScreenTimeDaily {
+  id                 String   @id @default(uuid())
+  deviceId           String   @map("device_id")
+  date               DateTime
+  totalMinutes       Int      @map("total_minutes")
+  byAppBreakdownJson Json?    @map("by_app_breakdown_json")
+
+  device             Device   @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@index([deviceId])
+  @@index([date])
+  @@unique([deviceId, date])
+  @@map("screen_time_daily")
+}
+
+model Alert {
+  id          String   @id @default(uuid())
+  childId     String   @map("child_id")
+  type        String
+  message     String
+  triggeredAt DateTime @default(now()) @map("triggered_at")
+  acknowledged Boolean @default(false)
+
+  child       User     @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@index([childId])
+  @@index([triggeredAt])
+  @@index([acknowledged])
+  @@map("alerts")
+}
+
+model Screenshot {
+  id         String   @id @default(uuid())
+  deviceId   String   @map("device_id")
+  timestamp  DateTime @default(now())
+  storageUrl String   @map("storage_url")
+
+  device     Device   @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@index([deviceId])
+  @@index([timestamp])
+  @@map("screenshots")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  parentId  String   @map("parent_id")
+  childId   String?  @map("child_id")
+  action    String   // e.g. "VIEW_TIMELINE", "VIEW_SCREENSHOTS", "EXPORT_DATA", "DELETE_DEVICE"
+  resource  String   // e.g. "monitoring/timeline"
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([parentId])
+  @@index([childId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  name        String
+  description String?
+  color       String?  @default("#f59e0b")
+  status      String   @default("active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tasks       Task[]
+
+  @@index([userId])
+  @@index([status])
+  @@map("projects")
+}
+
+model Goal {
+  id           String      @id @default(uuid())
+  userId       String      @map("user_id")
+  title        String
+  description  String?
+  category     String      @default("Personal")
+  targetValue  Float?      @map("target_value")
+  currentValue Float?      @default(0) @map("current_value")
+  unit         String?
+  deadline     DateTime?
+  status       String      @default("in_progress")
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @default(now()) @updatedAt @map("updated_at")
+
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  milestones   Milestone[]
+
+  @@index([userId])
+  @@index([category])
+  @@index([status])
+  @@map("goals")
+}
+
+model Milestone {
+  id        String    @id @default(uuid())
+  goalId    String    @map("goal_id")
+  title     String
+  completed Boolean   @default(false)
+  dueDate   DateTime? @map("due_date")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  goal      Goal      @relation(fields: [goalId], references: [id], onDelete: Cascade)
+
+  @@index([goalId])
+  @@map("milestones")
+}
+
+model CalendarEvent {
+  id             String   @id @default(uuid())
+  userId         String   @map("user_id")
+  title          String
+  description    String?
+  startTime      DateTime @map("start_time")
+  endTime        DateTime @map("end_time")
+  isAllDay       Boolean  @default(false) @map("is_all_day")
+  location       String?
+  recurrenceRule String?  @map("recurrence_rule")
+  color          String?  @default("#3b82f6")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @default(now()) @updatedAt @map("updated_at")
+
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([startTime])
+  @@index([endTime])
+  @@map("calendar_events")
+}

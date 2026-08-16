@@ -1,0 +1,15 @@
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\TrackerAgent.TrayApp.csproj.AssemblyReference.cache
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\Views\ActivitySummaryWindow.baml
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\Views\PairingWindow.baml
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\Views\TimesUpLockWindow.baml
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\App.baml
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\Views\ActivitySummaryWindow.g.cs
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\Views\PairingWindow.g.cs
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\Views\TimesUpLockWindow.g.cs
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\App.g.cs
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\TrackerAgent.TrayApp_MarkupCompile.cache
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\TrackerAgent.TrayApp.g.resources
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\TrackerAgent.TrayApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\TrackerAgent.TrayApp.AssemblyInfoInputs.cache
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\TrackerAgent.TrayApp.AssemblyInfo.cs
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.TrayApp\obj\Release\net8.0-windows\win-x64\TrackerAgent.TrayApp.csproj.CoreCompileInputs.cache

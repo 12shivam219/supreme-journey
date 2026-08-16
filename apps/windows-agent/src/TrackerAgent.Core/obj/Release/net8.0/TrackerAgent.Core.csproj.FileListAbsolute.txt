@@ -1,0 +1,12 @@
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Release\net8.0\TrackerAgent.Core.csproj.AssemblyReference.cache
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Release\net8.0\TrackerAgent.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Release\net8.0\TrackerAgent.Core.AssemblyInfoInputs.cache
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Release\net8.0\TrackerAgent.Core.AssemblyInfo.cs
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Release\net8.0\TrackerAgent.Core.csproj.CoreCompileInputs.cache
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\bin\Release\net8.0\TrackerAgent.Core.deps.json
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\bin\Release\net8.0\TrackerAgent.Core.dll
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\bin\Release\net8.0\TrackerAgent.Core.pdb
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Release\net8.0\TrackerAgent.Core.dll
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Release\net8.0\refint\TrackerAgent.Core.dll
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Release\net8.0\TrackerAgent.Core.pdb
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Release\net8.0\ref\TrackerAgent.Core.dll

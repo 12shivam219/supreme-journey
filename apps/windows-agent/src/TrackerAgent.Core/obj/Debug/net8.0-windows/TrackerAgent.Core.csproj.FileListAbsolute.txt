@@ -1,0 +1,12 @@
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\bin\Debug\net8.0-windows\TrackerAgent.Core.deps.json
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\bin\Debug\net8.0-windows\TrackerAgent.Core.dll
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\bin\Debug\net8.0-windows\TrackerAgent.Core.pdb
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Debug\net8.0-windows\TrackerAgent.Core.csproj.AssemblyReference.cache
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Debug\net8.0-windows\TrackerAgent.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Debug\net8.0-windows\TrackerAgent.Core.AssemblyInfoInputs.cache
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Debug\net8.0-windows\TrackerAgent.Core.AssemblyInfo.cs
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Debug\net8.0-windows\TrackerAgent.Core.csproj.CoreCompileInputs.cache
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Debug\net8.0-windows\TrackerAgent.Core.dll
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Debug\net8.0-windows\refint\TrackerAgent.Core.dll
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Debug\net8.0-windows\TrackerAgent.Core.pdb
+C:\Users\acer\Downloads\Tracker\apps\windows-agent\src\TrackerAgent.Core\obj\Debug\net8.0-windows\ref\TrackerAgent.Core.dll
