@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "npm run prisma:generate --workspace=apps/backend --if-present",
     "dev:backend": "npm run dev --workspace=apps/backend",
     "dev:web": "npm run dev --workspace=apps/web",
     "build:shared": "npm run build --workspace=packages/shared",
